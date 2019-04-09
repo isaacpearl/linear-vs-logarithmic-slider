@@ -17,7 +17,16 @@ Linear_vs_logarithmic_sliderAudioProcessorEditor::Linear_vs_logarithmic_sliderAu
 {
     // Make sure that before the constructor has finished, you've set the
     // editor's size to whatever you need it to be.
-    setSize (400, 300);
+    setSize (200, 200);
+    
+    midiVolume.setSliderStyle(Slider::LinearBarVertical);
+    midiVolume.setRange(0.0, 127.0, 1.0);
+    midiVolume.setTextBoxStyle(Slider::NoTextBox, false, 90, 0);
+    midiVolume.setPopupDisplayEnabled(true, false, this);
+    midiVolume.setTextValueSuffix(" Volume");
+    midiVolume.setValue(1.0);
+    
+    addAndMakeVisible(&midiVolume);
 }
 
 Linear_vs_logarithmic_sliderAudioProcessorEditor::~Linear_vs_logarithmic_sliderAudioProcessorEditor()
@@ -27,16 +36,15 @@ Linear_vs_logarithmic_sliderAudioProcessorEditor::~Linear_vs_logarithmic_sliderA
 //==============================================================================
 void Linear_vs_logarithmic_sliderAudioProcessorEditor::paint (Graphics& g)
 {
-    // (Our component is opaque, so we must completely fill the background with a solid colour)
-    g.fillAll (getLookAndFeel().findColour (ResizableWindow::backgroundColourId));
+    g.drawFittedText ("MIDI Volume", getLocalBounds(), Justification::centred, 1);
 
-    g.setColour (Colours::white);
+    g.fillAll (Colours::white);
+
+    g.setColour (Colours::black);
     g.setFont (15.0f);
-    g.drawFittedText ("Hello World!", getLocalBounds(), Justification::centred, 1);
 }
 
 void Linear_vs_logarithmic_sliderAudioProcessorEditor::resized()
 {
-    // This is generally where you'll want to lay out the positions of any
-    // subcomponents in your editor..
+    midiVolume.setBounds (40, 30, 20, getHeight() - 60);
 }

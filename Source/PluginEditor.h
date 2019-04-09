@@ -30,6 +30,7 @@ private:
     // This reference is provided as a quick way for your editor to
     // access the processor object that created it.
     Linear_vs_logarithmic_sliderAudioProcessor& processor;
+    Slider midiVolume;
 
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (Linear_vs_logarithmic_sliderAudioProcessorEditor)
 };
